@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TranscationMapper">
+
+    <!-- type为实体类TranscationBean，包名已经配置，可以直接写类名 -->
+    <resultMap id="transcationMap" type="TranscationBean">
+        <id property="id" column="id"/>
+        <id property="hash" column="transactionHash"/>
+        <result property="transactionIndex" column="transactionIndex"/>
+        <result property="blockHash" column="blockHash"/>
+        <result property="blockNumber" column="blockNumber"/>
+        <result property="from" column="from"/>
+        <result property="to" column="to"/>
+        <result property="nonce" column="nonce"/>
+        <result property="gasPrice" column="gasPrice"/>
+        <result property="gas" column="gas"/>
+        <result property="input" column="input"/>
+        <result property="value" column="value"/>
+        <result property="timestamp" column="timestamp"/>
+    </resultMap>
+    <!-- 查询最新交易信息 -->
+    <select id="getTranscation" resultMap="transcationMap">
+        select * from transaction_info t order by t.TIMESTAMP desc
+    </select>
+    <!-- 查询交易信息根据hash -->
+    <select id="getTranscationInfoByHash" resultMap="transcationMap">
+        select * from transaction_info t where transactionHash=#{hash}
+    </select>
+    <!-- 查询交易信息根据from -->
+    <select id="getTranscationInfoByfrom" resultMap="transcationMap">
+        select * from transaction_info t where t.from=#{from}
+    </select>
+    <!-- 批量插入交易信息 -->
+    <insert id="insertTranscationList" parameterType="java.util.List">
+        insert into transaction_info(transactionHash,transactionIndex,blockHash,
+        blockNumber,transaction_info.from,transaction_info.to,
+        nonce,gasPrice,gas,
+        transaction_info.input,transaction_info.value,transaction_info.timestamp) VALUES
+        <foreach collection="transcationList" item="trsList" index="index" open="(" close=")" separator=",">
+            #{trsList.hash},#{trsList.transactionIndex},#{trsList.blockHash},
+            #{trsList.blockNumber},#{trsList.from},#{trsList.to},
+            #{trsList.nonce},#{trsList.gasPrice},#{trsList.gas},
+            #{trsList.input},#{trsList.value},#{trsList.timestamp}
+        </foreach>
+    </insert>
+    <!-- 插入交易信息 -->
+    <insert id="insertTranscation" parameterType="TranscationBean">
+        insert into transaction_info(transactionHash,transactionIndex,blockHash,
+        blockNumber,transaction_info.from,transaction_info.to,
+        nonce,gasPrice,gas,
+        transaction_info.input,transaction_info.value,transaction_info.timestamp) VALUES(
+        #{hash},#{transactionIndex},#{blockHash},
+        #{blockNumber},#{from},#{to},
+        #{nonce},#{gasPrice},#{gas},
+        #{input},#{value},#{timestamp}
+        )
+    </insert>
+</mapper>

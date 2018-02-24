@@ -1,0 +1,96 @@
+/*** input ***/
+.searchbar .search {
+    padding-top: 8px;
+}
+
+/*** 首页-交易/区块列表组件 ***/
+.table-cnt .first-row {
+    border-top-width: 0px;
+}
+
+.table-cnt .second-row {
+    border-top: 1px dashed #ccc;
+}
+
+.table-cnt .list-item .first-col {
+    padding-left: 20px;
+}
+
+.table-cnt .list-item .fourth-col {
+    padding-right: 20px;
+    text-align: right;
+}
+
+.table-cnt .first-row .item {
+    line-height: inherit;
+}
+
+.table-cnt .first-row .first-col {
+    padding: 22px 0px 12px 20px;
+}
+
+.table-cnt .first-row .second-col {
+    padding: 22px 0px 12px 0px;
+}
+
+.table-cnt .first-row .third-col {
+    padding: 22px 0px 12px 0px;
+}
+
+.table-cnt .first-row .fourth-col {
+    padding: 22px 20px 12px 0px;
+}
+
+/*** 首页-区块列表 ***/
+.new-block .list-item .first-col {
+    width: 186px;
+}
+
+.new-block .list-item .first-col a {
+    color: #2c5e54;
+}
+
+.new-block .list-item .second-col {
+    width: 303px;
+    padding-right: 133px;
+}
+
+.new-block .list-item .third-col {
+    width: 303px;
+    padding-right: 133px;
+}
+
+.new-block .list-item .fourth-col {
+    width: 208px;
+    color: #666;
+}
+
+/*** 首页-交易列表 ***/
+.new-trade .list-item .first-col {
+    width: 186px;
+}
+
+.new-trade .list-item .second-col {
+    width: 406px;
+}
+
+.new-trade .list-item .third-col {
+    width: 170px;
+}
+
+.new-trade .list-item .fourth-col {
+    width: 238px;
+}
+
+/*** 交易集合 ***/
+.trade-set .new-trade .list-item .first-col {
+    width: 410px;
+}
+
+.trade-set .new-trade .list-item .second-col {
+    width: 504px;
+}
+
+.trade-set .new-trade .list-item .third-col {
+    width: auto;
+}

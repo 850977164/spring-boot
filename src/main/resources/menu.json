@@ -1,0 +1,60 @@
+{
+  "method": [
+    {
+      "url": "/views/transcation_allinfo.jsp",
+      "urlName": "交易信息查询(全部)"
+    },
+    {
+      "url": "/views/transcation_infobyPage.jsp",
+      "urlName": "交易信息查询(分页)"
+    },
+    {
+      "url": "/views/block_info.jsp",
+      "urlName": "区块信息查询"
+    }
+  ],
+  "name": "调用方法",
+  "project": [
+    {
+      "titlename": "初始化任务",
+      "titleProject": "MyStartupRunner2.java"
+    },
+    {
+      "titlename": "定时任务",
+      "titleProject": "MyScheduled.java"
+    },
+    {
+      "titlename": "控制层",
+      "titleProject": [
+        {
+          "name": "初始化菜单",
+          "url": "MenuController.java"
+        },
+        {
+          "name": "区块信息",
+          "url": "BlockController.java"
+        },
+        {
+          "name": "交易信息",
+          "url": "TranscationController.java"
+        }
+      ]
+    },
+    {
+      "titlename": "数据层",
+      "titleProject": [
+        {
+          "name": "区块",
+          "url": "BlockInfoMapper.xml"
+        },
+        {
+          "name": "交易",
+          "url": "TranscationMapper.xml"
+        }
+      ]
+    }
+  ],
+  "projectName": "项目"
+}
+
+

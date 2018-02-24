@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BlockMapper">
+
+    <!-- 获取最近插入的区块编号 -->
+    <select id="getBlockNum" resultType="java.lang.Integer">
+        select IFNULL(MAX(t.number+0),0) from block_info t
+    </select>
+    <!-- 获取区块信息 -->
+    <select id="getBlockInfo" resultType="BlockInfoBean">
+        select * from block_info order by block_info.timestamp desc
+    </select>
+    <!-- 批量插入区块信息 -->
+    <insert id="insertTranscationList" parameterType="java.util.List">
+        insert into block_info(
+        difficulty,extraData,gasLimit,
+        gasUsed,hash,logsBloom,
+        miner,nonce,block_info.number,
+        parentHash,sha3Uncles,block_info.size,
+        stateRoot,block_info.timestamp,totalDifficulty,
+        transactions,transactionsRoot,uncles
+        ) VALUES
+        <foreach collection="blockinfoBeanlist" item="trsList" index="index" open="(" close=")" separator=",">
+            #{trsList.difficulty},#{trsList.extraData},#{trsList.gasLimit},
+            #{trsList.gasUsed},#{trsList.hash},#{trsList.logsBloom},
+            #{trsList.miner},#{trsList.nonce},#{trsList.number},
+            #{trsList.parentHash},#{trsList.sha3Uncles},#{trsList.size},
+            #{trsList.stateRoot},#{trsList.timestamp},#{trsList.totalDifficulty},
+            #{trsList.transactions},#{trsList.transactionsRoot},#{trsList.uncles}
+        </foreach>
+    </insert>
+    <!-- 插入区块信息 -->
+    <insert id="insertBlockInfo" parameterType="BlockInfoBean">
+        insert into block_info(difficulty,extraData,gasLimit,
+        gasUsed,hash,logsBloom,
+        miner,nonce,block_info.number,
+        parentHash,sha3Uncles,block_info.size,
+        stateRoot,block_info.timestamp,totalDifficulty,
+        transactions,transactionsRoot,uncles) VALUES(
+        #{blockinfoBean.difficulty},#{blockinfoBean.extraData},#{blockinfoBean.gasLimit},
+        #{blockinfoBean.gasUsed},#{blockinfoBean.hash},#{blockinfoBean.logsBloom},
+        #{blockinfoBean.miner},#{blockinfoBean.nonce},#{blockinfoBean.number},
+        #{blockinfoBean.parentHash},#{blockinfoBean.sha3Uncles},#{blockinfoBean.size},
+        #{blockinfoBean.stateRoot},#{blockinfoBean.timestamp},#{blockinfoBean.totalDifficulty},
+        #{blockinfoBean.transactions},#{blockinfoBean.transactionsRoot},#{blockinfoBean.uncles}
+        )
+    </insert>
+</mapper>
